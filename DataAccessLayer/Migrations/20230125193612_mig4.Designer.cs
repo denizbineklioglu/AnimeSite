@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230125193612_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,17 +186,20 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("AnimeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("AnimeStatusId")
+                    b.Property<int>("AnimeStatusID")
                         .HasColumnType("int");
 
                     b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("AnimeID");
 
-                    b.HasIndex("AnimeStatusId");
+                    b.HasIndex("AnimeStatusID");
 
                     b.HasIndex("AppUserId");
 
@@ -584,7 +589,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasOne("EntityLayer.AnimeStatus", "AnimeStatus")
                         .WithMany("AnimeUserStatuses")
-                        .HasForeignKey("AnimeStatusId")
+                        .HasForeignKey("AnimeStatusID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

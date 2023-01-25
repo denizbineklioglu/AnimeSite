@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230125185800_mig1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,131 +99,6 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("CategoryID");
 
                     b.ToTable("AnimeCategories");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeComment", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("AnimeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AnimeID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("AnimeComments");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeFavorite", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("AnimeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AnimeId");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("AnimeFavorites");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeStatus", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("AnimeStatuses");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeUserStatus", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("AnimeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnimeStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AnimeID");
-
-                    b.HasIndex("AnimeStatusId");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("AnimeUserStatuses");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeVote", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("AnimeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AnimeID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.ToTable("AnimeVotes");
                 });
 
             modelBuilder.Entity("EntityLayer.AppRole", b =>
@@ -380,40 +257,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Episodes");
                 });
 
-            modelBuilder.Entity("EntityLayer.EpisodeComment", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EpisodeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("EpisodeId");
-
-                    b.ToTable("EpisodeComments");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -536,90 +379,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("EntityLayer.AnimeComment", b =>
-                {
-                    b.HasOne("EntityLayer.Anime", "Anime")
-                        .WithMany("AnimeComments")
-                        .HasForeignKey("AnimeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.AppUser", "AppUser")
-                        .WithMany("AnimeComments")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Anime");
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeFavorite", b =>
-                {
-                    b.HasOne("EntityLayer.Anime", "Anime")
-                        .WithMany("AnimeFavorites")
-                        .HasForeignKey("AnimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.AppUser", "AppUser")
-                        .WithMany("AnimeFavorites")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Anime");
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeUserStatus", b =>
-                {
-                    b.HasOne("EntityLayer.Anime", "Anime")
-                        .WithMany("AnimeUserStatuses")
-                        .HasForeignKey("AnimeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.AnimeStatus", "AnimeStatus")
-                        .WithMany("AnimeUserStatuses")
-                        .HasForeignKey("AnimeStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.AppUser", "AppUser")
-                        .WithMany("AnimeUserStatues")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Anime");
-
-                    b.Navigation("AnimeStatus");
-
-                    b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeVote", b =>
-                {
-                    b.HasOne("EntityLayer.Anime", "Anime")
-                        .WithMany("AnimeVotes")
-                        .HasForeignKey("AnimeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.AppUser", "AppUser")
-                        .WithMany("AnimeVotes")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Anime");
-
-                    b.Navigation("AppUser");
-                });
-
             modelBuilder.Entity("EntityLayer.Episode", b =>
                 {
                     b.HasOne("EntityLayer.Anime", "Anime")
@@ -629,25 +388,6 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Anime");
-                });
-
-            modelBuilder.Entity("EntityLayer.EpisodeComment", b =>
-                {
-                    b.HasOne("EntityLayer.AppUser", "AppUser")
-                        .WithMany("EpisodeComments")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Episode", "Episode")
-                        .WithMany("EpisodeComments")
-                        .HasForeignKey("EpisodeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AppUser");
-
-                    b.Navigation("Episode");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -705,43 +445,12 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Navigation("AnimeCategories");
 
-                    b.Navigation("AnimeComments");
-
-                    b.Navigation("AnimeFavorites");
-
-                    b.Navigation("AnimeUserStatuses");
-
-                    b.Navigation("AnimeVotes");
-
                     b.Navigation("Episodes");
-                });
-
-            modelBuilder.Entity("EntityLayer.AnimeStatus", b =>
-                {
-                    b.Navigation("AnimeUserStatuses");
-                });
-
-            modelBuilder.Entity("EntityLayer.AppUser", b =>
-                {
-                    b.Navigation("AnimeComments");
-
-                    b.Navigation("AnimeFavorites");
-
-                    b.Navigation("AnimeUserStatues");
-
-                    b.Navigation("AnimeVotes");
-
-                    b.Navigation("EpisodeComments");
                 });
 
             modelBuilder.Entity("EntityLayer.Category", b =>
                 {
                     b.Navigation("AnimeCategories");
-                });
-
-            modelBuilder.Entity("EntityLayer.Episode", b =>
-                {
-                    b.Navigation("EpisodeComments");
                 });
 #pragma warning restore 612, 618
         }
