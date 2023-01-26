@@ -1,0 +1,50 @@
+﻿@model AnimeSite.Models.AppUserLoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<section class="normal-breadcrumb set-bg" data-setbg="/anime-main/img/one-piece.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Giriş Yap</h2>
+                    <p>FanAnime'ye Hoşgeldiniz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="login spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login__form">
+                    <h3>Giriş</h3>
+                    <form method="post">
+                        <div class="input__item">
+                            <input type="text" asp-for="UserName" placeholder="Kullanıcı Adı">
+                            <span class="icon_mail"></span>
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger"></span><br />
+                        <div class="input__item">
+                            <input type="password" asp-for="Password" placeholder="Şifre">
+                            <span class="icon_lock"></span>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span><br />
+                        <button type="submit" class="site-btn">Giriş Yap</button>
+                    </form>
+                    <a href="#" class="forget_pass">Parolanı mı unuttun?</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login__register">
+                    <h3>Bir hesabın yok mu?</h3>
+                    <a href="/Login/Register/" class="primary-btn">Kayıt Ol</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
