@@ -14,5 +14,11 @@ namespace AnimeSite.Controllers
             var values = manager.TGetList();
             return View(values);
         }
+
+        public IActionResult AnimeDetail(int id)
+        {
+            var values = manager.TGetById(id);
+            return View(values);
+        }
     }
 }
