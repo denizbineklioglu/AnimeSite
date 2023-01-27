@@ -16,7 +16,7 @@ namespace EntityLayer
         public string Description { get; set; }
         public string Type{ get; set; }
         public string Image1 { get; set; }
-        public string Image2 { get; set; }
+        public string? Image2 { get; set; }
         public string Studio { get; set; }
         public DateTime AnimeStartDate { get; set; }
         public double Rating { get; set; }

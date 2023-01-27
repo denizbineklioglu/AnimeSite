@@ -9,7 +9,7 @@ namespace EntityLayer
 {
     public class AppUser:IdentityUser<int>
     {
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public List<AnimeComment> AnimeComments { get; set; }
         public List<EpisodeComment> EpisodeComments { get; set; }
