@@ -1,0 +1,21 @@
+﻿@using EntityLayer
+@model List<Category>
+
+
+
+<div class="col-lg-4 col-md-6 col-sm-8">
+    <div class="product__sidebar">
+        <div class="product__sidebar__view">
+            <div class="section-title">
+                <h5 style="color:cornsilk">Kategoriler</h5>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                <div class="section-title">
+                    <h5><a style="color:white" href="/Anime/AnimeList">@item.Name</a></h5>
+                </div>
+            }            
+        </div>
+    </div>
+</div>
