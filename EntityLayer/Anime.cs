@@ -11,7 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int AnimeID { get; set; }
-        public string Name { get; set; }
+        public string AnimeName { get; set; }
         public string JapanName { get; set; }
         public string Description { get; set; }
         public string Type{ get; set; }

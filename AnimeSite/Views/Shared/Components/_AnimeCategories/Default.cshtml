@@ -1,0 +1,9 @@
+﻿@using EntityLayer.DTO
+@model List<AnimeCategoryModel>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.CategoryName</li>
+    }
+</ul>

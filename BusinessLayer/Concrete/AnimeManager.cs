@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer;
+using EntityLayer.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace BusinessLayer.Concrete
         public AnimeManager(IAnimeDal animeDal)
         {
             _animeDal = animeDal;
+        }
+
+        public List<AnimeCategoryModel> GetAnimeCategory(int id)
+        {
+            return _animeDal.GetAnimeCategories(x => x.AnimeID == id);
         }
 
         public void TAdd(Anime t)

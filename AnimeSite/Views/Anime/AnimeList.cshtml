@@ -46,11 +46,10 @@
                                         </div>
                                     </a>
                                 <div class="product__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="/Anime/AnimeDetail/@item.AnimeID">@item.Name</a></h5>
+                                    
+                                   @* @await Component.InvokeAsync("_AnimeCategories"); *@
+
+                                    <h5><a href="/Anime/AnimeDetail/@item.AnimeID">@item.AnimeName</a></h5>
                                 </div>
                             </div>
                         </div>

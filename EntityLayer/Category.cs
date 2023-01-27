@@ -11,7 +11,7 @@ namespace EntityLayer
     {
         [Key]
         public int CategoryID { get; set; }
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
         public bool Status { get; set; }
         public List<AnimeCategory> AnimeCategories { get; set; }
     }
