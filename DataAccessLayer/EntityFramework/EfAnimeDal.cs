@@ -31,5 +31,23 @@ namespace DataAccessLayer.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<AnimeCommentModel> GetAnimeComments(Expression<Func<AnimeComment, bool>> filter = null)
+        {
+            using (var context = new Context())
+            {
+                var result = from c in filter is null ? context.AnimeComments : context.AnimeComments.Where(filter)
+                             join d in context.Users
+                             on c.AppUserId equals d.Id
+                             select new AnimeCommentModel
+                             {
+                                 UserName = d.UserName,
+                                 Title = c.Title,
+                                 Content = c.Content,
+                                 CommentDate = c.CommentDate
+                             };
+                return result.ToList();
+            }
+        }
     }
 }

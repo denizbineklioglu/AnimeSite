@@ -12,5 +12,6 @@ namespace BusinessLayer.Abstract
     {
         List<AnimeCategoryModel> GetAnimeCategory(int id);
         List<Anime> GetList(string? p);
+        List<AnimeCommentModel> TGetAnimeComments(int id);
     }
 }

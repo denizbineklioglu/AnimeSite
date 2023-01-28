@@ -14,6 +14,7 @@ namespace EntityLayer
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime CommentDate { get; set; }
+        public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         public int AnimeID { get; set; }
         public Anime Anime { get; set; }

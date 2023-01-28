@@ -52,7 +52,7 @@
                                     <ul>
                                         <li><span>Type:</span> @Model.Type</li>
                                         <li><span>Studios:</span> @Model.Studio</li>
-                                        <li><span>Date aired:</span> @Model.AnimeStartDate ?</li>
+                                        <li><span>Date aired:</span> @(((DateTime)Model.AnimeStartDate).ToString("dd-MMM-yyyy"))</li>
                                         @await Component.InvokeAsync("_AnimeCategories",new {id=ViewBag.i})
                                     </ul>
                                 </div>
@@ -74,6 +74,8 @@
                 </div>
             </div>
         </div>
+
+        @await Component.InvokeAsync("_AnimeComments",new {id=ViewBag.i})
 
 
 
