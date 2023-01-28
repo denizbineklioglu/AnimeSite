@@ -23,6 +23,11 @@ namespace BusinessLayer.Concrete
             return _animeDal.GetAnimeCategories(x => x.AnimeID == id);
         }
 
+        public List<Anime> GetList(string? p)
+        {
+             return _animeDal.GetListByFilter(x=>x.AnimeName.Contains(p));
+        }
+
         public void TAdd(Anime t)
         {
             _animeDal.Insert(t);

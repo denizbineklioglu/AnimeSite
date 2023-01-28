@@ -11,5 +11,6 @@ namespace BusinessLayer.Abstract
     public interface IAnimeService:IGenericService<Anime>
     {
         List<AnimeCategoryModel> GetAnimeCategory(int id);
+        List<Anime> GetList(string? p);
     }
 }

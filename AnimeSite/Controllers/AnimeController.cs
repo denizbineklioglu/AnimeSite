@@ -9,9 +9,13 @@ namespace AnimeSite.Controllers
     public class AnimeController : Controller
     {
         AnimeManager manager = new AnimeManager(new EfAnimeDal());
-        public IActionResult AnimeList()
+        public IActionResult AnimeList(string? p)
         {
             var values = manager.TGetList();
+            if (!string.IsNullOrEmpty(p))
+            {
+                values = manager.GetList(p);
+            }
             return View(values);
         }
 
