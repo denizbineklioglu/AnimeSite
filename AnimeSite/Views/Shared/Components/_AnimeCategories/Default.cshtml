@@ -1,9 +1,10 @@
 ﻿@using EntityLayer.DTO
 @model List<AnimeCategoryModel>
 
-<ul>
-    @foreach (var item in Model)
+    <br />-
+<li><span>Tür:</span>
+@foreach (var item in Model)
     {
-        <li>@item.CategoryName</li>
-    }
-</ul>
+        <button disabled class="btn btn-outline-light">@item.CategoryName</button>
+    }    
+</li>

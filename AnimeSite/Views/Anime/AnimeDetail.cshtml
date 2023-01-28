@@ -53,7 +53,7 @@
                                         <li><span>Type:</span> @Model.Type</li>
                                         <li><span>Studios:</span> @Model.Studio</li>
                                         <li><span>Date aired:</span> @Model.AnimeStartDate ?</li>
-                                        <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
+                                        @await Component.InvokeAsync("_AnimeCategories",new {id=ViewBag.i})
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-md-6">

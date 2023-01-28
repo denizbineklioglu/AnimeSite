@@ -6,10 +6,10 @@ namespace AnimeSite.Views.ViewComponents
 {
     public class _AnimeCategories:ViewComponent
     {
-        AnimeCategoryManager manager = new AnimeCategoryManager(new EfAnimeCategoryDal());
-        public IViewComponentResult Invoke()
+        AnimeManager manager = new AnimeManager(new EfAnimeDal());
+        public IViewComponentResult Invoke(int id)
         {
-            var result = manager.TGetAnimeByCategory();
+            var result = manager.GetAnimeCategory(id);
             return View(result);
         }
     }

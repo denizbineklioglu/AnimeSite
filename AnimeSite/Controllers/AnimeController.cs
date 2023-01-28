@@ -17,6 +17,7 @@ namespace AnimeSite.Controllers
 
         public IActionResult AnimeDetail(int id)
         {
+            ViewBag.i = id;
             var values = manager.TGetById(id);
             return View(values);
         }

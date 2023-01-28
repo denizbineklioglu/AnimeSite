@@ -22,11 +22,9 @@ namespace DataAccessLayer.EntityFramework
             using (var context = new Context())
             {
                 var result = from p in filter is null ? context.AnimeCategories : context.AnimeCategories.Where(filter)
-                             join c in context.Animes on p.AnimeID equals c.AnimeID
                              join d in context.Categories on p.CategoryID equals d.CategoryID
                              select new AnimeCategoryModel
                              {
-                                 AnimeName = c.AnimeName,
                                  CategoryName = d.CategoryName                               
                              };
                 
