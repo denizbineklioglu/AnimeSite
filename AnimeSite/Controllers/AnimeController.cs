@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,13 +9,18 @@ namespace AnimeSite.Controllers
     [AllowAnonymous]
     public class AnimeController : Controller
     {
-        AnimeManager manager = new AnimeManager(new EfAnimeDal());
+        private readonly IAnimeService _animeService;
+        public AnimeController(IAnimeService animeService)
+        {
+            _animeService = animeService;
+        }
+
         public IActionResult AnimeList(string? p)
         {
-            var values = manager.TGetList();
+            var values = _animeService.TGetList();
             if (!string.IsNullOrEmpty(p))
             {
-                values = manager.GetList(p);
+                values = _animeService.GetList(p);
             }
             return View(values);
         }
@@ -22,7 +28,7 @@ namespace AnimeSite.Controllers
         public IActionResult AnimeDetail(int id)
         {
             ViewBag.i = id;
-            var values = manager.TGetById(id);
+            var values = _animeService.TGetById(id);
             return View(values);
         }
     }

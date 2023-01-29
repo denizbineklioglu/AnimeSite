@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,10 +7,15 @@ namespace AnimeSite.Views.ViewComponents
 {
     public class _CategoryList:ViewComponent
     {
-        CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        private readonly ICategoryService _categoryService;
+        public _CategoryList(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
         public IViewComponentResult Invoke()
         {
-            var values = cm.TGetList();
+            var values = _categoryService.TGetList();
             return View(values);
         }
     }

@@ -1,7 +1,13 @@
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using BusinessLayer.Container;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.CodeAnalysis.Host.Mef;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +16,9 @@ var builder = WebApplication.CreateBuilder(args);
 //IDENTÝTY CONFÝGÜRASYONU
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<Context>();
+
+builder.Services.ContainerDependencies();
+
 builder.Services.AddControllersWithViews();
 
 //PROJE SEVÝYESÝNDE AUTHENTICATE    
