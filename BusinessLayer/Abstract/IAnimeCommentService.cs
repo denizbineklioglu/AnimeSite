@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IAnimeCategoryService:IGenericService<AnimeCategory>
+    public interface IAnimeCommentService:IGenericService<AnimeComment>
     {
-        List<CategoryByAnimeModel> TGetAnimeByCategory(int id);
-        List<AnimeCategoryModel> TGetCategoryByAnime();
+        List<AnimeCommentModel> TGetAnimeComments(int id);
     }
 }

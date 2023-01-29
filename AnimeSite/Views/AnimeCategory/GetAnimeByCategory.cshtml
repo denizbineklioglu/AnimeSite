@@ -1,9 +1,10 @@
-﻿@using EntityLayer
-@model List<Anime>
+﻿@using EntityLayer.DTO
+@model List<CategoryByAnimeModel>
 @{
-    ViewData["Title"] = "AnimeList";
+    ViewData["Title"] = "GetAnimeByCategory";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
+
 <div class="breadcrumb-option">
     <div class="container">
         <div class="row">
@@ -30,27 +31,27 @@
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-danger mb-3">Ara</button>
                                 </div>
-                            </form>                            
+                            </form>
                         </div>
                     </div>
                     <div class="row">
 
                         @foreach (var item in Model)
-                        {                           
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <a href="/Anime/AnimeDetail/@item.AnimeID">
-                                <div class="product__item__pic set-bg" data-setbg="@item.Image1">
+                        {
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <a href="/Anime/AnimeDetail/@item.AnimeId">
+                                        <div class="product__item__pic set-bg" data-setbg="@item.ImageUrl">
                                         </div>
                                     </a>
-                                <div class="product__item__text">
-                                    
-                                   @* @await Component.InvokeAsync("_AnimeCategories"); *@
+                                    <div class="product__item__text">
 
-                                    <h5><a href="/Anime/AnimeDetail/@item.AnimeID">@item.AnimeName</a></h5>
+                                        @* @await Component.InvokeAsync("_AnimeCategories"); *@
+
+                                        <h5><a href="/Anime/AnimeDetail/@item.AnimeId">@item.AnimeName</a></h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         }
 
                     </div>

@@ -16,7 +16,25 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfAnimeCategoryDal : GenericRepository<AnimeCategory>, IAnimeCategoryDal
     {
-        
+        public List<CategoryByAnimeModel> GetAnimeByCategory(Expression<Func<AnimeCategory, bool>> filter = null)
+        {
+            using (var context = new Context())
+            {
+                var result = from a in filter is null ? context.AnimeCategories : context.AnimeCategories.Where(filter)
+                             join b in context.Categories
+                             on a.CategoryID equals b.CategoryID
+                             join c in context.Animes
+                             on a.AnimeID equals c.AnimeID
+                             select new CategoryByAnimeModel
+                             {
+                                 AnimeId = c.AnimeID,
+                                 AnimeName = c.AnimeName,
+                                 ImageUrl = c.Image1
+                             };
+                return result.ToList();
+            }
+        }
+
         public List<AnimeCategoryModel> GetCategoryByAnime(Expression<Func<AnimeCategory, bool>> filter = null)
         {
             using (var context = new Context())

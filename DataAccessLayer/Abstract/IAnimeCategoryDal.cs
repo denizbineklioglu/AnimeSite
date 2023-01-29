@@ -12,5 +12,7 @@ namespace DataAccessLayer.Abstract
     public interface IAnimeCategoryDal:IGenericDal<AnimeCategory>
     {
         List<AnimeCategoryModel> GetCategoryByAnime(Expression<Func<AnimeCategory, bool>> filter = null);
+        List<CategoryByAnimeModel> GetAnimeByCategory(Expression<Func<AnimeCategory, bool>> filter = null);
+        
     }
 }

@@ -6,7 +6,7 @@ namespace AnimeSite.Views.ViewComponents
 {
     public class _AnimeComments:ViewComponent
     {
-        AnimeManager manager = new AnimeManager(new EfAnimeDal());
+        AnimeCommentManager manager = new AnimeCommentManager(new EfAnimeCommentDal());
         public IViewComponentResult Invoke(int id)
         {
             var result = manager.TGetAnimeComments(id);

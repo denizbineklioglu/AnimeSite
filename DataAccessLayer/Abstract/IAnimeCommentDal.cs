@@ -11,6 +11,7 @@ namespace DataAccessLayer.Abstract
 {
     public interface IAnimeCommentDal:IGenericDal<AnimeComment>
     {
-        
+        List<AnimeCommentModel> GetAnimeComments(Expression<Func<AnimeComment, bool>> filter = null);
+
     }
 }

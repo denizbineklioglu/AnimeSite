@@ -28,7 +28,7 @@ namespace BusinessLayer.Concrete
             _animeCategoryDal.Delete(t);
         }
 
-        public List<AnimeCategoryModel> TGetAnimeByCategory()
+        public List<AnimeCategoryModel> TGetCategoryByAnime()
         {
             return _animeCategoryDal.GetCategoryByAnime();
         }
@@ -36,6 +36,11 @@ namespace BusinessLayer.Concrete
         public AnimeCategory TGetById(int id)
         {
            return _animeCategoryDal.GetById(id);
+        }
+
+        public List<CategoryByAnimeModel> TGetAnimeByCategory(int id)
+        {
+            return _animeCategoryDal.GetAnimeByCategory(x=>x.CategoryID == id);
         }
 
         public List<AnimeCategory> TGetList()
