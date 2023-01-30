@@ -75,6 +75,9 @@
             </div>
         </div>
 
+
+
+        @await Component.InvokeAsync("_AnimeEpisodes",new {id=ViewBag.i})
         @await Component.InvokeAsync("_AnimeComments",new {id=ViewBag.i})
 
 

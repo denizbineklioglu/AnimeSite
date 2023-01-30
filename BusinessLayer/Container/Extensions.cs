@@ -23,6 +23,8 @@ namespace BusinessLayer.Container
             services.AddScoped<IAnimeCommentDal, EfAnimeCommentDal>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
+            services.AddScoped<IEpisodeService, EpisodeManager>();
+            services.AddScoped<IEpisodeDal, EfEpisodeDal>();
         }
     }
 

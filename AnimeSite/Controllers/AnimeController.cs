@@ -31,5 +31,10 @@ namespace AnimeSite.Controllers
             var values = _animeService.TGetById(id);
             return View(values);
         }
+
+        public IActionResult AnimeWatching()
+        {
+            return View();
+        }
     }
 }
