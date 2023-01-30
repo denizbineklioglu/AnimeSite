@@ -10,9 +10,11 @@ namespace AnimeSite.Controllers
     public class AnimeController : Controller
     {
         private readonly IAnimeService _animeService;
-        public AnimeController(IAnimeService animeService)
+        private readonly IEpisodeService _episodeService;
+        public AnimeController(IAnimeService animeService, IEpisodeService episodeService)
         {
             _animeService = animeService;
+            _episodeService = episodeService;
         }
 
         public IActionResult AnimeList(string? p)
@@ -32,9 +34,11 @@ namespace AnimeSite.Controllers
             return View(values);
         }
 
-        public IActionResult AnimeWatching()
+        public IActionResult AnimeWatching(int id)
         {
-            return View();
+            ViewBag.i = id;
+            var result = _episodeService.TGetAnimeEpisodesById(id);
+            return View(result);
         }
     }
 }

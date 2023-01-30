@@ -20,32 +20,37 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Episode t)
         {
-            throw new NotImplementedException();
+            _episodeDal.Insert(t);
         }
 
         public void TDelete(Episode t)
         {
-            throw new NotImplementedException();
+            _episodeDal.Delete(t);
         }
 
-        public List<AnimesDetailEpsiode> TGetAnimeEpisodes(int id)
+        public List<AnimesDetailEpisode> TGetAnimeEpisodes(int id)
         {
             return _episodeDal.GetAnimeEpisodes(x=>x.AnimeID == id);
         }
 
+        public AnimesDetailEpisode TGetAnimeEpisodesById(int id)
+        {
+            return _episodeDal.GetAnimeEpisodeById(x=>x.ID == id);
+        }
+
         public Episode TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _episodeDal.GetById(id);
         }
 
         public List<Episode> TGetList()
         {
-            throw new NotImplementedException();
+            return _episodeDal.GetList();
         }
 
         public void TUpdate(Episode t)
         {
-            throw new NotImplementedException();
+            _episodeDal.Update(t);
         }
     }
 }

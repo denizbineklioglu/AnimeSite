@@ -9,11 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IEpisodeDal:IGenericDal<Episode>
+    public interface IEpisodeCommentDal:IGenericDal<EpisodeComment>
     {
-        List<AnimesDetailEpisode> GetAnimeEpisodes(Expression<Func<Episode,bool>> filter);
-
-        AnimesDetailEpisode GetAnimeEpisodeById(Expression<Func<Episode, bool>> filter);
+        List<EpisodeCommentModel> GetEpisodeComments(Expression<Func<EpisodeComment, bool>> filter = null);
 
     }
 }

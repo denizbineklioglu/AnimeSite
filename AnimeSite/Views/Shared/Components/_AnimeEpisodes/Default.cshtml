@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.DTO
-@model List<AnimesDetailEpsiode>
+@model List<AnimesDetailEpisode>
 
 
 <div class="row">
@@ -10,7 +10,7 @@
             </div>
             @foreach (var item in Model)
             {
-                <a href="#">@item.Name</a>
+                <a href="/Anime/AnimeWatching/@item.Id">@item.AnimeName @item.EpisodeName</a>
             }
         </div>
     </div>

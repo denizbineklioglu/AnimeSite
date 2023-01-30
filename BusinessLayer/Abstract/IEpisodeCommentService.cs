@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IEpisodeService:IGenericService<Episode>
+    public interface IEpisodeCommentService:IGenericService<EpisodeComment>
     {
-        List<AnimesDetailEpisode> TGetAnimeEpisodes(int id);
-
-        AnimesDetailEpisode TGetAnimeEpisodesById(int id);
+        List<EpisodeCommentModel> TGetList(int id);
     }
 }
