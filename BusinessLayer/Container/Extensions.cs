@@ -17,14 +17,19 @@ namespace BusinessLayer.Container
         {
             services.AddScoped<IAnimeService, AnimeManager>();
             services.AddScoped<IAnimeDal, EfAnimeDal>();
+
             services.AddScoped<IAnimeCategoryService, AnimeCategoryManager>();
             services.AddScoped<IAnimeCategoryDal, EfAnimeCategoryDal>();
+
             services.AddScoped<IAnimeCommentService, AnimeCommentManager>();
             services.AddScoped<IAnimeCommentDal, EfAnimeCommentDal>();
+
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
+
             services.AddScoped<IEpisodeService, EpisodeManager>();
             services.AddScoped<IEpisodeDal, EfEpisodeDal>();
+
             services.AddScoped<IEpisodeCommentService, EpisodeCommentManager>();
             services.AddScoped<IEpisodeCommentDal, EfEpisodeCommentDal>();
         }

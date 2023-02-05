@@ -43,6 +43,11 @@ namespace BusinessLayer.Concrete
             return _episodeDal.GetById(id);
         }
 
+        public List<LastEpisodesModel> TGetLastEpisodesByAnime()
+        {
+            return _episodeDal.GetLastEpisodesByAnime();
+        }
+
         public List<Episode> TGetList()
         {
             return _episodeDal.GetList();

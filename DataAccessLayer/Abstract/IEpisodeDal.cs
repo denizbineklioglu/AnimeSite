@@ -15,5 +15,7 @@ namespace DataAccessLayer.Abstract
 
         AnimesDetailEpisode GetAnimeEpisodeById(Expression<Func<Episode, bool>> filter);
 
+        List<LastEpisodesModel> GetLastEpisodesByAnime();
+
     }
 }

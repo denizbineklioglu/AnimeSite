@@ -11,6 +11,7 @@ namespace EntityLayer
         public int ID { get; set; }
         public string Name { get; set; }
         public string Source { get; set; }
+        public DateTime EpisodeDate { get; set; }
 
         public int AnimeID { get; set; }
         public Anime Anime { get; set; }

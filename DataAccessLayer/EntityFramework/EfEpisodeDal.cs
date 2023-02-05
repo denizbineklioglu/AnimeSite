@@ -51,5 +51,25 @@ namespace DataAccessLayer.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<LastEpisodesModel> GetLastEpisodesByAnime()
+        {
+            using (var context = new Context())
+            {
+                var result = from a in context.Episodes
+                             join b in context.Animes
+                             on a.AnimeID equals b.AnimeID
+                             orderby a.EpisodeDate descending
+                             select new LastEpisodesModel
+                             {
+                                 EpisodeId = a.ID,
+                                 AnimeName = b.AnimeName,
+                                 EpisodeName = a.Name,
+                                 EpisodeDate = a.EpisodeDate,
+                                 ImageUrl = b.Image1
+                             };
+                return result.Take(3).ToList();
+            }
+        }
     }
 }

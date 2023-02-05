@@ -13,5 +13,7 @@ namespace BusinessLayer.Abstract
         List<AnimesDetailEpisode> TGetAnimeEpisodes(int id);
 
         AnimesDetailEpisode TGetAnimeEpisodesById(int id);
+
+        List<LastEpisodesModel> TGetLastEpisodesByAnime();
     }
 }
