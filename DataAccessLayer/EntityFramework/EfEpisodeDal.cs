@@ -3,6 +3,8 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.Repository;
 using EntityLayer;
 using EntityLayer.DTO;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,9 +58,15 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var context = new Context())
             {
+
+                //var r = context.EpisodeComments
+                //        .FromSqlRaw()
+
                 var result = from a in context.Episodes
                              join b in context.Animes
                              on a.AnimeID equals b.AnimeID
+                             join c in context.EpisodeComments 
+                             on a.ID equals c.EpisodeId                              
                              orderby a.EpisodeDate descending
                              select new LastEpisodesModel
                              {

@@ -13,5 +13,6 @@ namespace DataAccessLayer.Abstract
     {
         List<AnimeCommentModel> GetAnimeComments(Expression<Func<AnimeComment, bool>> filter = null);
 
+        int GetAnimeCommentNumber(Expression<Func<AnimeComment, bool>> filter = null);
     }
 }

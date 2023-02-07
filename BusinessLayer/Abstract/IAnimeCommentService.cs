@@ -11,5 +11,7 @@ namespace BusinessLayer.Abstract
     public interface IAnimeCommentService:IGenericService<AnimeComment>
     {
         List<AnimeCommentModel> TGetAnimeComments(int id);
+
+        int TGetAnimeCommentNumber(int id);
     }
 }

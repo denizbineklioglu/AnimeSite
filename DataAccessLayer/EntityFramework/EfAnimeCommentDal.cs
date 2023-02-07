@@ -14,6 +14,19 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfAnimeCommentDal:GenericRepository<AnimeComment> , IAnimeCommentDal
     {
+        public int GetAnimeCommentNumber(Expression<Func<AnimeComment, bool>> filter = null)
+        {
+            using (var context = new Context())
+            {
+                var result = from c in filter is null ? context.AnimeComments : context.AnimeComments.Where(filter)
+                             join d in context.Users
+                             on c.AppUserId equals d.Id
+                             select c;
+                             
+                return result.Count();
+            }
+        }
+
         public List<AnimeCommentModel> GetAnimeComments(Expression<Func<AnimeComment, bool>> filter = null)
         {
             using (var context = new Context())

@@ -29,6 +29,11 @@ namespace BusinessLayer.Concrete
             _animeCommentDal.Delete(t);
         }
 
+        public int TGetAnimeCommentNumber(int id)
+        {
+            return _animeCommentDal.GetAnimeCommentNumber(x=> x.AnimeID == id);
+        }
+
         public List<AnimeCommentModel> TGetAnimeComments(int id)
         {
             return _animeCommentDal.GetAnimeComments(x=>x.AnimeID == id);

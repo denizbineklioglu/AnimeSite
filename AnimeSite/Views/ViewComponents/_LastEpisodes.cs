@@ -6,7 +6,6 @@ namespace AnimeSite.Views.ViewComponents
     public class _LastEpisodes:ViewComponent
     {
         private readonly IEpisodeService _episodeService;
-
         public _LastEpisodes(IEpisodeService episodeService)
         {
             _episodeService = episodeService;
