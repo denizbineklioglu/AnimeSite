@@ -60,39 +60,23 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var context = new Context())
             {
-                var q = context.Episodes                                                                   
-                        .GroupBy(x => new { x.Anime.AnimeName, x.Name})
-                        .OrderByDescending(x => x.First().EpisodeDate)
+
+                var q = context.Episodes
+                        .Include(x=>x.Anime)
+                        .Include(x=>x.EpisodeComments)
+                        .OrderByDescending(x=>x.EpisodeDate)
+                        .Take(3)
                         .Select(x => new LastEpisodesModel()
                         {
-                            EpisodeId = x.First().ID,
-                            AnimeName = x.Key.AnimeName,
-                            EpisodeName = x.Key.Name,
-                            CommentCount = x.First().EpisodeComments.Count(),
-                            EpisodeDate = x.First().EpisodeDate,
-                            ImageUrl = x.First().Anime.Image1                            
-                        });                
+                            EpisodeId = x.ID,
+                            AnimeName = x.Anime.AnimeName,
+                            EpisodeName = x.Name,
+                            CommentCount = x.EpisodeComments.Count(),
+                            EpisodeDate = x.EpisodeDate,
+                            ImageUrl = x.Anime.Image1
+                        });
 
-
-
-                //var result = from a in context.Episodes
-                //             join b in context.Animes
-                //             on a.AnimeID equals b.AnimeID
-                //             join c in context.EpisodeComments
-                //             on a.ID equals c.EpisodeId                            
-                //             orderby a.EpisodeDate descending
-                //             select new LastEpisodesModel
-                //             {
-                //                 EpisodeId = a.ID,
-                //                 AnimeName = b.AnimeName,
-                //                 EpisodeName = a.Name,
-                //                 EpisodeDate = a.EpisodeDate,
-                //                 ImageUrl = b.Image1                                 
-                //             };
-
-
-
-                return q.Take(3).ToList();
+                return q.ToList();
             }
         }
     }
