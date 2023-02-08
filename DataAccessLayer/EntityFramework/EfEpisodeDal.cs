@@ -9,8 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DataAccessLayer.EntityFramework
 {
@@ -58,25 +60,39 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var context = new Context())
             {
+                var q = context.Episodes                                                                   
+                        .GroupBy(x => new { x.Anime.AnimeName, x.Name})
+                        .OrderByDescending(x => x.First().EpisodeDate)
+                        .Select(x => new LastEpisodesModel()
+                        {
+                            EpisodeId = x.First().ID,
+                            AnimeName = x.Key.AnimeName,
+                            EpisodeName = x.Key.Name,
+                            CommentCount = x.First().EpisodeComments.Count(),
+                            EpisodeDate = x.First().EpisodeDate,
+                            ImageUrl = x.First().Anime.Image1                            
+                        });                
 
-                //var r = context.EpisodeComments
-                //        .FromSqlRaw()
 
-                var result = from a in context.Episodes
-                             join b in context.Animes
-                             on a.AnimeID equals b.AnimeID
-                             join c in context.EpisodeComments 
-                             on a.ID equals c.EpisodeId                              
-                             orderby a.EpisodeDate descending
-                             select new LastEpisodesModel
-                             {
-                                 EpisodeId = a.ID,
-                                 AnimeName = b.AnimeName,
-                                 EpisodeName = a.Name,
-                                 EpisodeDate = a.EpisodeDate,
-                                 ImageUrl = b.Image1
-                             };
-                return result.Take(3).ToList();
+
+                //var result = from a in context.Episodes
+                //             join b in context.Animes
+                //             on a.AnimeID equals b.AnimeID
+                //             join c in context.EpisodeComments
+                //             on a.ID equals c.EpisodeId                            
+                //             orderby a.EpisodeDate descending
+                //             select new LastEpisodesModel
+                //             {
+                //                 EpisodeId = a.ID,
+                //                 AnimeName = b.AnimeName,
+                //                 EpisodeName = a.Name,
+                //                 EpisodeDate = a.EpisodeDate,
+                //                 ImageUrl = b.Image1                                 
+                //             };
+
+
+
+                return q.Take(3).ToList();
             }
         }
     }
