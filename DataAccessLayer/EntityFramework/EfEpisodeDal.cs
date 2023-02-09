@@ -60,7 +60,6 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var context = new Context())
             {
-
                 var q = context.Episodes
                         .Include(x=>x.Anime)
                         .Include(x=>x.EpisodeComments)
