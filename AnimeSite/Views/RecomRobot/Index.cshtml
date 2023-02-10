@@ -1,17 +1,28 @@
-﻿@{
+﻿@model EntityLayer.Category
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 <br />
+<style>
+    .form-control {
+        width: 152px;
+    }
 
+    .nice-select {
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+</style>
 <br />
 
 <div class="container">
-    <h2 style="color:white;">Tavsiye Robotu</h2>
+    <h2 style="color:white;">Tavsiye Robotu</h2><br />
     <form class="row">
-
         <div class="col-auto">
-            <input type="text" class="form-control" id="inputPassword2" placeholder="Kategori">
+
+            @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.categoryValue,"Kategori Giriniz",
+            new {@class="form-control"})
         </div>
         <div class="col-auto">
             <input type="text" class="form-control" id="inputPassword2" placeholder="Yıl giriniz">
@@ -20,9 +31,25 @@
             <button type="submit" class="btn btn-primary mb-3">Ara</button>
         </div>
     </form>
-    <div style="height:700px;">
-    </div>
 
+    <div class="row">
+       @* @*<div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="product__item">
+                <a href=>
+                    <div class="product__item__pic set-bg" data-setbg="/">
+                    </div>
+                </a>
+                <div class="product__item__text">
+                    <h5><a href="#"</a>One Piece</h5>
+                </div>
+            </div>
+        </div>*@
+    </div>
 </div>
+
+
+
+
+
 
 
