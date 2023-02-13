@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 <br />
+<script src="~/anime-main/js/jquery-3.3.1.min.js"></script>
 <style>
     .form-control {
         width: 152px;
@@ -22,17 +23,17 @@
         <div class="col-auto">
 
             @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.categoryValue,"Kategori Giriniz",
-            new {@class="form-control"})
+            new {@id="categories",@class="form-control"})
         </div>
         <div class="col-auto">
-            <input type="text" class="form-control" id="inputPassword2" placeholder="Yıl giriniz">
+            <input type="text" class="form-control" id="year" placeholder="Yıl giriniz">
         </div>
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Ara</button>
+            <button type="button" id="btn" class="btn btn-primary mb-3">Ara</button>
         </div>
     </form>
 
-    <div class="row">
+    <div class="row" id="veriler">
        @* @*<div class="col-lg-4 col-md-6 col-sm-6">
             <div class="product__item">
                 <a href=>
@@ -45,6 +46,38 @@
             </div>
         </div>*@
     </div>
+
+    <script>
+                
+        $('#btn').click(function () {
+            
+            let secilen = $('#categories').val();
+            let yil = $('#year').val();
+                        
+            $.ajax({
+                url: '/RecomRobot/Index/',
+                type: 'POST',
+                data: {
+                    kategori: secilen,
+                    year: yil
+                },
+                success: function (data) {
+
+                    let div = "<div>"
+                    let w = jQuery.parseJSON(data);
+                    $.each(w,(index,value)) => {
+                        div += `<div class="col-lg-4 col-md-6 col-sm-6"><div class="product__item">
+                                               <div class="product__item__text"><h5><a href="#"</a>One Piece</h5>
+                                                       </div></div>`
+                    });
+                    div += "</div>";    
+                    $('#veriler').html(div);
+                }
+            });
+        })
+            
+    </script>
+
 </div>
 
 
