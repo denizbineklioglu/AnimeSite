@@ -55,7 +55,7 @@
             let yil = $('#year').val();
                         
             $.ajax({
-                url: '/RecomRobot/Index/',
+                url: '/RecomRobot/Index',
                 type: 'POST',
                 data: {
                     kategori: secilen,
@@ -65,7 +65,7 @@
 
                     let div = "<div>"
                     let w = jQuery.parseJSON(data);
-                    $.each(w,(index,value)) => {
+                    $.each(w,(index,value) => {
                         div += `<div class="col-lg-4 col-md-6 col-sm-6"><div class="product__item">
                                                <div class="product__item__text"><h5><a href="#"</a>One Piece</h5>
                                                        </div></div>`

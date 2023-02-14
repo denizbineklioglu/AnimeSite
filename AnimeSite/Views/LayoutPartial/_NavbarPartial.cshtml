@@ -16,7 +16,7 @@
                             <li><a href="/RecomRobot/Index/">Tavsiye Robotu</a></li>
                             <li><a href="/Anime/AnimeList/">Animeler</a></li>
                             <li><a href="#">Manga</a></li>
-                            <li><a href="#">Anime Haberleri</a></li>
+                            <li><a href="#">Haberler</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -24,7 +24,11 @@
             <div class="col-lg-2">
                 <div class="header__right">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="~/anime-main/login.html"><span class="icon_profile"></span></a>
+                    @if(User.Identity.IsAuthenticated){
+                        <a href="~/anime-main/login.html"><span class="icon_profile"></span></a>
+                    }else{
+                        <a href="/Login/SingIn/" class="btn btn-danger">Giriş Yap</a>
+                    }
                 </div>
             </div>
         </div>
